@@ -26,8 +26,8 @@ function App() {
 				<h1>loading...</h1>
 			</section>
 		);
-  }
-  // destucture the array for the jobs here because after loading the arrary isn't empty anymore
+	}
+	// destucture the array for the jobs here because after loading the arrary isn't empty anymore
 	const { company, dates, duties, title } = jobs[value];
 	return (
 		<section className="section">
@@ -37,12 +37,24 @@ function App() {
 			</div>
 			<div className="jobs-center">
 				{/* btn-container */}
+				<div className="btn-container">
+					{jobs.map((item, index) => {
+						return (
+							<button
+								key={item.id}
+								onClick={() => setValue(index)}
+								className={`job-btn ${index === value && "active-btn"}`}>
+								{item.company}
+							</button>
+						);
+					})}
+				</div>
 				{/* job info */}
 				<article className="job-info">
 					<h3>{title}</h3>
 					<h4>{company}</h4>
-          <p className="job-date">{dates}</p>
-          {/* setup the display for the unordered list from duties */}
+					<p className="job-date">{dates}</p>
+					{/* setup the display for the unordered list from duties */}
 					{duties.map((duty, index) => {
 						return (
 							<div key={index} className="job-dec">
